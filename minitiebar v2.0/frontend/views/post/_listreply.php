@@ -17,9 +17,16 @@ $innerReplyDataProvider=new ActiveDataProvider([
             <span class="glyphicon glyphicon-user"></span>&nbsp;<?=$model->publishUser->nickname?>
             <span class="glyphicon glyphicon-time"></span>&nbsp;<?=
             date('Y-m-d H:i',strtotime($model->publish_time))?>
-            <a onclick="renderNewReplyNavbar('reply','<?=$model->id?>')">
+            
 
-            <span style="float:right">回复</span></a>
+            <?php             
+                if(!Yii::$app->user->isGuest&&Yii::$app->user->id===$model->publishUser->id||Yii::$app->user->id===$model->post->publishUser->id):?>
+                <a onclick="deleteReply('<?=$model->id?>')">
+                <span style="float:right">&nbsp;删除&nbsp;</span></a>
+            <?php endif;?>
+
+            <a onclick="renderNewReplyNavbar('reply','<?=$model->id?>')">
+            <span style="float:right">&nbsp;回复&nbsp;</span></a>
         </div>
     <div class="panel-body">
         <?=$model->content?>  

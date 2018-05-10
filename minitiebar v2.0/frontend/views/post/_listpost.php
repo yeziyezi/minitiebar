@@ -10,6 +10,8 @@ $detailUrl = Url::to(['post/detail', 'post_id' => $post_id]);
             <h3 class="panel-title"><span class="glyphicon glyphicon-list-alt"></span>&nbsp;<?= $model->title ?></h3>
             <span class="glyphicon glyphicon-user"></span>&nbsp;<?= $model->publishUser->nickname ?>
             <span class="glyphicon glyphicon-time"></span>&nbsp;<?= $model->last_reply_time ?>
+            <span class="glyphicon glyphicon-comment"></span>&nbsp;<?= $model->reply_number?>
+
         </a> 
         </div>
         <div class="panel-body">

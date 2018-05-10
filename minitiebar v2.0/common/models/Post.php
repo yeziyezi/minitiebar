@@ -38,7 +38,7 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'publish_time', 'last_reply_time', 'reply_number', 'publish_user'], 'required'],
+            [['id', 'publish_time', 'last_reply_time', 'reply_number', 'publish_user','content','title'], 'required'],
             [['publish_time', 'last_reply_time'], 'safe'],
             [['reply_number', 'publish_user', 'reply_status', 'stick_status'], 'integer'],
             [['id', 'bar_id'], 'string', 'max' => 45],
@@ -57,14 +57,14 @@ class Post extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'content' => 'Content',
-            'publish_time' => 'Publish Time',
-            'last_reply_time' => 'Last Reply Time',
-            'reply_number' => 'Reply Number',
-            'publish_user' => 'Publish User',
-            'reply_status' => 'Reply Status',
-            'stick_status' => 'Stick Status',
+            'title' => '标题',
+            'content' => '正文',
+            'publish_time' => '发布时间',
+            'last_reply_time' => '最后回复时间',
+            'reply_number' => '回复数',
+            'publish_user' => '发布者',
+            'reply_status' => '回复状态',
+            'stick_status' => '置顶状态',
             'bar_id' => 'Bar ID',
         ];
     }
@@ -91,15 +91,5 @@ class Post extends \yii\db\ActiveRecord
     public function getReplies()
     {
         return $this->hasMany(Reply::className(), ['post_id' => 'id']);
-    }
-
-    public function afterSave($insert, $changedAttributes)
-    {
-        parent::afterSave($insert, $changedAttributes);
-        if($insert){
-            $bar=$this->bar;
-            $bar->post_number++;
-            $bar->save();
-        }
     }
 }

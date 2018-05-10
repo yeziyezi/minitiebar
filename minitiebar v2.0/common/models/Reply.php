@@ -33,7 +33,7 @@ class Reply extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'publish_user', 'publish_time'], 'required'],
+            [['id', 'publish_user', 'publish_time','content'], 'required'],
             [['publish_user'], 'integer'],
             [['publish_time'], 'safe'],
             [['id', 'post_id'], 'string', 'max' => 45],
@@ -80,12 +80,5 @@ class Reply extends \yii\db\ActiveRecord
     public function getPost()
     {
         return $this->hasOne(Post::className(), ['id' => 'post_id']);
-    }
-
-    public function afterSave($insert, $changedAttributes){
-        parent::afterSave($insert, $changedAttributes);
-        $post=$this->post;
-        $post->last_reply_time=Date('Y-m-d H:i:s');
-        $post->save();
     }
 }

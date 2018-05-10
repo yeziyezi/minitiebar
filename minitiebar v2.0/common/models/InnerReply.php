@@ -35,7 +35,7 @@ class InnerReply extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['publish_user', 'publish_time', 'to_user', 'type'], 'required'],
+            [['publish_user', 'publish_time', 'to_user', 'type','content'], 'required'],
             [['publish_user', 'to_user', 'type'], 'integer'],
             [['publish_time'], 'safe'],
             [['content'], 'string', 'max' => 500],
@@ -85,11 +85,4 @@ class InnerReply extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'to_user']);
     }
-    public function afterSave($insert, $changedAttributes){
-        parent::afterSave($insert, $changedAttributes);
-        $post=$this->reply->post;
-        $post->last_reply_time=Date('Y-m-d H:i:s');
-        $post->save();
-    }
-
 }

@@ -7,6 +7,7 @@ use yii\base\Security;
 use common\models\InnerReply;
 use Yii;
 use yii\web\HttpException;
+use common\models\Post;
 class InnerReplyController extends Controller{
     
     function actionList(){
@@ -23,10 +24,13 @@ class InnerReplyController extends Controller{
 
             if($model->validate()&&$model->save()){
                 $post_id=$model->reply->post->id;
+                $post=Post::findOne($post_id);
+                $post->reply_number++;
+                $post->save();
                 $this->redirect(['post/detail','post_id'=>$post_id]);
+            }elseif($model->content===''){
+                throw new HttpException(500,'回复不能为空！');
             }else{
-                print_r($model->errors);
-                exit;
                 throw new HttpException(500,'回复失败！');
             }
         }

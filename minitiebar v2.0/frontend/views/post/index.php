@@ -1,6 +1,10 @@
 <?php
 use yii\widgets\ListView;
+use yii\helpers\Url;
+$this->params['breadcrumbs'][] = $bar_name.'吧';
 ?>
+<a class="btn btn-primary"  role="button" href="<?=Url::to(['post/add','bar-name'=>$bar_name])?>"
+    ><span class="glyphicon glyphicon-comment"></span>发布贴子</a>
 <div class="row">
     <div class="col-md-12">
         <?=ListView::widget([

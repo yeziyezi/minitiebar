@@ -7,7 +7,7 @@ $params = array_merge(
 );
 
 return [
-    'defaultRoute'=>'bar/index',//修改入口脚本的默认路由
+    'defaultRoute'=>'bar/list',//修改入口脚本的默认路由
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
