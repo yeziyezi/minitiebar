@@ -51,10 +51,11 @@ AppAsset::register($this);
         $menuItems[] = ['label' => '注册', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => '登录', 'url' => ['/site/login']];
     } else {
+        $menuItems[]=['label'=>'个人资料','url'=>['/user/view']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Logout (' . Yii::$app->user->identity->nickname . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()

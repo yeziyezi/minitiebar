@@ -18,16 +18,27 @@ class PasswordResetRequestForm extends Model
      */
     public function rules()
     {
-        return [
+        $rules=[
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'exist',
                 'targetClass' => '\common\models\User',
                 'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'There is no user with this email address.'
+                'message' => '邮箱地址有误.'
             ],
         ];
+        
+        if(!Yii::$app->user->isGuest){//登录后需要让用户手动输入一次账号绑定的邮箱
+            $rules[] = [
+                'email', 'exist',
+                'targetClass' => '\common\models\User',
+                'filter' => ['email' => User::findOne(Yii::$app->user->id)->email],
+                'message' => '邮箱地址有误'
+            ];
+        }    
+            
+        return $rules;
     }
 
     /**

@@ -2,7 +2,7 @@
 return [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
@@ -10,7 +10,8 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
     ],
-    'name'=>'MiniTieBar 2.0',
-    'language'=>'zh-CN',
-    'timeZone' => 'Asia/Shanghai'
+    'name' => 'MiniTieBar 2.0',
+    'language' => 'zh-CN',
+    'timeZone' => 'Asia/Shanghai',
+
 ];
