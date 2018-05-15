@@ -39,6 +39,9 @@ class PostController extends Controller
     }
     public function actionAdd()
     {
+        if(Yii::$app->user->isGuest){
+            $this->redirect(['/site/login']);
+        }
         $barName = Yii::$app->request->get('bar-name');
         $bar = Bar::find()->where(['name' => $barName])->one();
         if ($bar === null) {
