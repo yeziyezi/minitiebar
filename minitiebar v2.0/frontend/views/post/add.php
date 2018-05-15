@@ -3,7 +3,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 ?>
 <?php
-$this->params['breadcrumbs'][] = ['label'=>$barName.'吧','url'=>['bar/index']];
+$this->params['breadcrumbs'][] = ['label'=>$barName.'吧','url'=>['bar/list']];
 $this->params['breadcrumbs'][] = '发贴';
 
 ?>

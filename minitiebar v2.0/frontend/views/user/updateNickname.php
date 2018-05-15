@@ -14,6 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <h1><?=$this->title?></h1>
 <?php $form=ActiveForm::begin();?>
-<?=$form->field($model,'nickname')->textInput(['value'=>$model->nickname])?>
+<?=$form->field($model,'nickname')->textInput(['value'=>$model->nickname,'autofocus'=>true])?>
 <?=Html::submitButton('修改', ['class' => 'btn btn-primary'])?>
 <?php ActiveForm::end();?>

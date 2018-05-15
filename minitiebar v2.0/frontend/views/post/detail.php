@@ -103,7 +103,7 @@ use yii\widgets\Breadcrumbs;
         <script>       
             function deleteDivAlert(post_id){
                 $("#alertDiv").empty();
-                $("#alertDiv").append('<br/><div class="alert alert-danger alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><h4>确认要删除贴子吗？</h4><p><button type="button" class="btn btn-danger" onclick="submitDelete()">删除</button> <button type="button" class="btn btn-default">取消</button></p></div></div>');
+                $("#alertDiv").append('<br/><div class="alert alert-danger alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"></button><h4>确认要删除贴子吗？</h4><p><button type="button" class="btn btn-danger" onclick="submitDelete()">删除</button> <button type="button" class="btn btn-default" onclick="closeAlert()">取消</button></p></div></div>');
             }
             function submitDelete(){
                 $.post({
@@ -117,6 +117,10 @@ use yii\widgets\Breadcrumbs;
                         }                        
                     }
                 });
+            }
+            function closeAlert(){
+                $(".alert").alert('close');
+                $("#alertDiv").empty();
             }
         </script>
     <?php endif;?>

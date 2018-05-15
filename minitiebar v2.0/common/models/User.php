@@ -220,6 +220,11 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return $this->hasMany(Reply::className(), ['publish_user' => 'id']);
     }
+
+    public function getBars()
+    {
+        return $this->hasMany(Bar::className(), ['create_user' => 'id']);
+    }
     
     //辅助方法
     public function setDefaultNickname()
